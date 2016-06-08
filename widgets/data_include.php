@@ -83,6 +83,18 @@ class Person
         }
 
     }
+
+    // read products
+    function readAll()
+    {
+
+        $query = "SELECT * FROM  " . $this->personal;
+
+        $stmt = $this->conn->prepare($query);
+        $stmt->execute();
+
+        return $stmt;
+    }
 }
 
 ?>
