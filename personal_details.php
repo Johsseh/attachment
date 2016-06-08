@@ -1,8 +1,18 @@
-<!<!doctype html>
+<?php
+include_once 'widgets/config.php';
+
+$database = new Config();
+$db = $database->getConnection();
+
+include_once 'widgets/data_include.php';
+$product = new Person($db);
+
+?>
+<!doctype html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Trial</title>
+    <title>personal_details | Attachment</title>
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/sign.css" rel="stylesheet">
 </head>
@@ -12,8 +22,35 @@
     include_once 'header.php';
     ?>
     <div class="container">
+        <?php
+        if ($_POST) {
+
+            $product->name = $_POST['name'];
+            $product->dob = $_POST['dob'];
+            $product->sex = $_POST['sex'];
+
+            if ($product->personal_details()) {
+
+                ?>
+                <div class="alert alert-success alert-dismissible" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <strong>Success!</strong>  <a href="#">View Data</a>.
+                </div>
+                <?php
+            } else {
+                ?>
+                <div class="alert alert-danger alert-dismissible" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <strong>Fail!</strong>
+                </div>
+                <?php
+            }
+        }
+        ?>
         <div class="row">
-            <form role="form">
+            <form method="post" role="form">
                 <div class="col-lg-6">
                     <div class="well well-sm"><strong><span class="glyphicon glyphicon-asterisk"></span>Required personnal details</strong></div>
                     <div class="form-group">
@@ -41,7 +78,7 @@
 
                         </div>
                     </div>
-                    <input type="submit" name="submit" value="Submit" class="btn btn-info pull-right">
+                    <input type="submit" value="Submit" class="btn btn-info pull-right">
                 </div>
             </form>
             <div class="col-lg-5 col-md-push-1">

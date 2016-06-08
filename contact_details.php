@@ -1,8 +1,18 @@
-<!<!doctype html>
+<?php
+include_once 'widgets/config.php';
+
+$database = new Config();
+$db = $database->getConnection();
+
+include_once 'widgets/data_include.php';
+$product = new Person($db);
+
+?>
+<!doctype html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Trial</title>
+    <title>Contact_details | Attachment</title>
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/sign.css" rel="stylesheet">
 </head>
@@ -12,25 +22,49 @@
     include_once 'header.php';
     ?>
     <div class="container">
-        <div class="row">
-            <form role="form">
-                <div class="col-lg-6">
-                    <div class="well well-sm"><strong><span class="glyphicon glyphicon-asterisk"></span>Required details on contacts</strong></div>
-                    <div class="form-group">
-                        <label for="Inputaddress">Enter the address</label>
-                        <div class="input-group">
-                            <input type="text" class="form-control" name="box"  placeholder="Enter the address" required>
-                            <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="Inputtel">Enter the telephone number</label>
-                        <div class="input-group">
-                            <input type="number" class="form-control" name="telephone" required>
-                            <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
-                        </div>
-                    </div>
+        <?php
+        if ($_POST) {
 
+            $product->box = $_POST['box'];
+            $product->telephone = $_POST['telephone'];
+
+            if ($product->contact_details()) {
+                ?>
+                <div class="alert alert-success alert-dismissible" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <strong>Success!</strong>  <a href="#">View Data</a>.
+                </div>
+                <?php
+            } else {
+                ?>
+                <div class="alert alert-danger alert-dismissible" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <strong>Fail!</strong>
+                </div>
+                <?php
+            }
+        }
+        ?>
+        <div class="row">
+            <form method="post" role="form">
+                <div class="col-lg-6">
+                    <div class="well well-sm"><strong><span class="glyphicon glyphicon-asterisk"></span>Required details on education</strong></div>
+                    <div class="form-group">
+                        <label for="Inputaddress">Enter Address</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" name="box"  placeholder="Enter Address" required>
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="Inputtelephone">Enter Phone NO</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" name="telephone" placeholder="Enter telephone number" required>
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
+                        </div>
+                    </div>
                     <input type="submit" name="submit" value="Submit" class="btn btn-info pull-right">
                 </div>
             </form>
@@ -55,10 +89,11 @@
         </div>
     </div>
 
-<!-- attach footer -->
-<footer class="footer">
-    <p>&copy; 2016 Attachment stuff, Inclusion media.</p>
-</footer>
+
+    <!-- attach footer -->
+    <footer class="footer">
+        <p>&copy; 2016 Attachment stuff, Inclusion media.</p>
+    </footer>
 
 </div> <!-- /container -->
 
@@ -67,4 +102,5 @@
 <script src="js/ie10-viewport-bug-workaround.js"></script>
 </body>
 </html>
+
 

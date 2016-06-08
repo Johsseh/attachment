@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Trial</title>
+    <title>Home | Attachment</title>
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/sign.css" rel="stylesheet">
 </head>

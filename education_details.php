@@ -1,19 +1,54 @@
-<!<!doctype html>
+<?php
+include_once 'widgets/config.php';
+
+$database = new Config();
+$db = $database->getConnection();
+
+include_once 'widgets/data_include.php';
+$product = new Person($db);
+
+?>
+<!doctype html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Trial</title>
+    <title>Education_details | Attachment</title>
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/sign.css" rel="stylesheet">
 </head>
 <body>
 <div class="container">
-<?php
-include_once 'header.php';
-?>
+    <?php
+    include_once 'header.php';
+    ?>
     <div class="container">
+        <?php
+        if ($_POST) {
+
+            $product->college = $_POST['college'];
+            $product->degree = $_POST['degree'];
+
+            if ($product->educational_info()) {
+                ?>
+                <div class="alert alert-success alert-dismissible" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <strong>Success!</strong>  <a href="#">View Data</a>.
+                </div>
+                <?php
+            } else {
+                ?>
+                <div class="alert alert-danger alert-dismissible" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <strong>Fail!</strong>
+                </div>
+                <?php
+            }
+        }
+        ?>
         <div class="row">
-            <form role="form">
+            <form method="post" role="form">
                 <div class="col-lg-6">
                     <div class="well well-sm"><strong><span class="glyphicon glyphicon-asterisk"></span>Required details on education</strong></div>
                     <div class="form-group">

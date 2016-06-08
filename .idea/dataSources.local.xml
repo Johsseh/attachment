@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="dataSourceStorageLocal">
+    <data-source name="MySQL - attachment@localhost" uuid="34544500-b328-4f0a-a263-778817040297">
+      <secret-storage>master_key</secret-storage>
+      <user-name>root</user-name>
+      <schema-pattern>attachment.*</schema-pattern>
+      <default-schemas>attachment.*</default-schemas>
+    </data-source>
+  </component>
+</project>

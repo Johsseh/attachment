@@ -14,9 +14,9 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="education_details.php">Education <span class="sr-only">(current)</span></a></li>
+                <li class="active"><a href="personal_details.php">My Details <span class="sr-only">(current)</span></a></li>
                 <li><a href="contact_details.php">Contact</a></li>
-                <li><a href="person_details.php">My Details</a></li>
+                <li><a href="education_details.php">Education</a></li>
             </ul>
 
             <ul class="nav navbar-nav navbar-right">

@@ -1,16 +1,29 @@
 <?php
-$hostname = 'localhost';
-$username = 'root';
-$password = 'django';
 
-try {
-    $conn = new PDO("mysql:host=$hostname;dbname=person", $username, $password);
-    echo 'Connected to database';
-    /*** closing the connection ***/
-    $conn = null;
-}
-catch(PDOException $e)
+class Config
 {
-    echo $e->getMessage();
+
+    // specify your own database credentials
+    private $host = "localhost";
+    private $db_name = "attachment";
+    private $username = "root";
+    private $password = "django";
+    public $conn;
+
+    // get the database connection
+    public function getConnection()
+    {
+
+        $this->conn = null;
+
+        try {
+            $this->conn = new PDO("mysql:host=" . $this->host . ";dbname=" . $this->db_name, $this->username, $this->password);
+        } catch (PDOException $exception) {
+            echo "Connection error: " . $exception->getMessage();
+        }
+
+        return $this->conn;
+    }
 }
+
 ?>
